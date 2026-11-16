@@ -34,7 +34,7 @@ The dataset is used for prototyping.
 - `src/evaluate_model.py` - model evaluation
 - `src/app.py` - REST API
 - `src/batch_predict.py` - batch predictions
-- `src/nightly_batch.sh` - scheduled batch script
+- `nightly_batch.sh` - scheduled batch script
 - `Data/results/` - prediction and evaluation results
 - `Models/` - saved trained model
 - `logs/` - application logs
@@ -88,6 +88,27 @@ python src/batch_predict.py
 ```
 
 Results are saved as CSV files in `Data/results/`.
+
+## Nightly Automation
+
+This project includes a Bash script that automates nightly batch data processing.
+
+The script performs the following actions:
+- Activates the Python virtual environment.
+- Checks the availability of the REST API.
+- Starts the API if it is not running.
+- Waits until the API is ready for operation.
+- Performs batch image classification.
+- Saves prediction results to CSV files.
+- Records execution details in log files.
+
+The script is scheduled to run daily at 02:00 using the `cron` scheduler on the macOS operating system.
+
+To run the script manually:
+
+```bash
+./nightly_batch.sh
+```
 
 ## Limitations
 
